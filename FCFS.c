@@ -1,3 +1,4 @@
+//first come first serve
 #include<stdio.h>
 
 int main(){
@@ -16,7 +17,7 @@ int main(){
     }
 
     // Sorting the processes based on arrival time in ascending order
-    for (i = 1; i <= t; i++) {
+    for (i = 0; i < t; i++) {
         for (int j = i + 1; j <= t; j++) {
             if (at[i] > at[j]) {
                 temp = at[i];
@@ -35,7 +36,7 @@ int main(){
     }
 
     //calculating completion time
-    for (i = 1; i <= t; i++){
+    for (i = 0; i < t; i++){
         if (at[i] <= ct[i-1]){
             ct[i] = ct[i-1] + bt[i];
         } else {
@@ -44,23 +45,23 @@ int main(){
     }
 
     //calculating turn around time { TAT = CT - AT}
-    for (i = 1; i <= t; i++){
+    for (i = 0; i < t; i++){
         tat[i] = ct[i] - at[i];
     }
 
     //calculating waiting time {WT = TAT-BT}
-    for (i = 1; i <= t; i++){
+    for (i = 0; i < t; i++){
         wt[i] = tat[i] - bt[i];
     }
 
     //calculating response time {response time = the first time process sets CPU - AT}
     rt[1] = 0; // Initializing the first process's response time to 0
-    for (i = 2; i <= t; i++){
+    for (i = 0; i < t; i++){
         rt[i] = ct[i-1] - at[i];
     }
 
     //calculating Average Total turn around time {AVG TAT = Total sum TAT / Total processes}
-    for (i = 1; i <= t; i++){
+    for (i = 0; i < t; i++){
         ttat += tat[i]; // ttat means total turn around time
     }
     //Display the Average total turn around time
@@ -69,7 +70,7 @@ int main(){
 
     //Display the final CPU process schedule
     printf("Process no\tArrival Time\tBurst Time\tCompletion Time\tTurn around time\tWaiting Time\tResponse Time\n");
-    for (i = 1; i <= t; i++){
+    for (i = 0; i < t; i++){
         printf("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t\t%d\t\t%d\n", p[i], at[i], bt[i], ct[i], tat[i], wt[i], rt[i]);
     }
     return 0;
